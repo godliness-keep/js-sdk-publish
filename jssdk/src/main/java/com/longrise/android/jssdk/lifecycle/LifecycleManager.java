@@ -108,7 +108,6 @@ public final class LifecycleManager implements Application.ActivityLifecycleCall
     }
 
     private static final class Holder {
-
         private static final LifecycleManager LIFECYCLE_MANAGER = new LifecycleManager();
     }
 }
