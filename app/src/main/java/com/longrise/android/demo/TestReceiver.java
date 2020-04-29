@@ -66,6 +66,7 @@ public final class TestReceiver {
      * 含有参数的接收者
      */
     private final IParamsReceiver<Params> mParamsReceiver = new IParamsReceiver<Params>() {
+        @Override
         @EventName("shareFeiji")
         public void onEvent(Params params) {
 

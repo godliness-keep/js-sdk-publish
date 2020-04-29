@@ -49,13 +49,13 @@
 				 	<!--}-->
 				 <!--}-->
 
-				 let message = {
-				    success:function(res){
-				        alert(JSON.stringify(res))
-				    }
-				 }
+				 <!--let message = {-->
+				    <!--success:function(res){-->
+				        <!--alert(JSON.stringify(res))-->
+				    <!--}-->
+				 <!--}-->
 
-				 wx.getNetworkType(message);
+				 <!--wx.getNetworkType(message);-->
 
 
 				<!--let params = [-->
@@ -81,23 +81,23 @@
 				 <!--}-->
 				 <!--lr.callNative(message)-->
 
-				<!--let params = {-->
-					<!--name: '中国特色社会主义道路',-->
-					<!--sex: '人民日益增长的物质文化需求同落后的生产关系之间的矛盾',-->
-					<!--age:100-->
-				<!--}-->
+				let params = {
+					name: '中国特色社会主义道路',
+					sex: '人民日益增长的物质文化需求同落后的生产关系之间的矛盾',
+					age:100
+				}
 
-				<!--let message = {-->
-					<!--eventName: 'shareFeiji',-->
-					<!--params: params,-->
-					<!--success: function(res) {-->
-						<!--alert('来自 Native 的返回：' + JSON.stringify(res))-->
-					<!--},-->
-					<!--failed: function(res) {-->
-						<!--alert('来自 Native 的返回：' + JSON.stringify(res))-->
-					<!--}-->
-				<!--}-->
-				<!--lr.callEvent(message)-->
+				let message = {
+					eventName: 'shareFeiji',
+					params: params,
+					success: function(res) {
+						alert('来自 Native 的返回：' + JSON.stringify(res))
+					},
+					failed: function(res) {
+						alert('来自 Native 的返回：' + JSON.stringify(res))
+					}
+				}
+				lr.callEvent(message)
 
 			}
 
