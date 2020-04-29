@@ -12,8 +12,6 @@ import com.longrise.android.jssdk.gson.ParameterizedTypeImpl;
 import com.longrise.android.jssdk.sender.IEventListener;
 import com.longrise.android.jssdk.sender.IMethodListener;
 
-import java.lang.reflect.Type;
-
 /**
  * Created by godliness on 2020-04-13.
  *
@@ -58,7 +56,7 @@ public class Request<T> extends AbsDataProtocol {
      * @param clz T.class
      */
     public static <T> Request<T> parseRequest(String json, Class<T> clz) {
-        return parseRequest(json, ParameterizedTypeImpl.getTypeImpl(Request.class, clz));
+        return JsonHelper.fromJson(json, ParameterizedTypeImpl.getTypeImpl(Request.class, clz));
     }
 
     /**
@@ -67,7 +65,7 @@ public class Request<T> extends AbsDataProtocol {
      * @param token TypeToken<T>(){}
      */
     public static <T> Request<T> parseRequest(String json, TypeToken<T> token) {
-        return parseRequest(json, ParameterizedTypeImpl.getTypeImpl(Request.class, token.getType()));
+        return JsonHelper.fromJson(json, ParameterizedTypeImpl.getTypeImpl(Request.class, token.getType()));
     }
 
     public void to(@NonNull WebView target) {
@@ -80,10 +78,6 @@ public class Request<T> extends AbsDataProtocol {
 
     public T getParams() {
         return params;
-    }
-
-    private static <T> Request<T> parseRequest(String json, Type type) {
-        return JsonHelper.fromJson(json, type);
     }
 
     public Request() {
