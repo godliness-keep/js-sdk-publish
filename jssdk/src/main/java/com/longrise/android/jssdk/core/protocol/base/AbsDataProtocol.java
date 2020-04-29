@@ -69,4 +69,5 @@ public abstract class AbsDataProtocol {
     public final String toJson() {
         return JsonHelper.toJson(this);
     }
+
 }

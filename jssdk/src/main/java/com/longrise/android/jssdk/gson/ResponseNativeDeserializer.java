@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.longrise.android.jssdk.Response;
+import com.longrise.android.jssdk.ResponseScript;
 
 import java.lang.reflect.Type;
 
@@ -15,19 +16,19 @@ import java.lang.reflect.Type;
  *
  * @author godliness
  */
-final class ResponseDeserializer implements JsonDeserializer<Response<String>> {
+final class ResponseNativeDeserializer implements JsonDeserializer<ResponseScript<String>> {
 
     static Type getType() {
-        return new TypeToken<Response<String>>() {
+        return new TypeToken<ResponseScript<String>>() {
         }.getType();
     }
 
-    static ResponseDeserializer create() {
-        return new ResponseDeserializer();
+    static ResponseNativeDeserializer create() {
+        return new ResponseNativeDeserializer();
     }
 
     @Override
-    public Response<String> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public ResponseScript<String> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         final JsonObject jsonObject = json.getAsJsonObject();
         final JsonElement versionElement = jsonObject.get("version");
         final int version = versionElement != null ? versionElement.getAsInt() : -1;
@@ -46,14 +47,10 @@ final class ResponseDeserializer implements JsonDeserializer<Response<String>> {
         } else {
             result = jsonResult.getAsString();
         }
-        final Response<String> response = new Response<>();
+        final ResponseScript<String> response = Response.scriptResponse();
         response.setVersion(version);
         response.setCallbackId(id);
         response.deserialize(result);
         return response;
-    }
-
-    private ResponseDeserializer(){
-
     }
 }

@@ -18,7 +18,6 @@ var lr = (function() {
 		if (hasParams) {
 			request = packageRequest(message)
 		}
-
 		if (isAndroid()) {
 			sendToAndroid(mapObject, message.methodName, request)
 		} else if (isIos()) {

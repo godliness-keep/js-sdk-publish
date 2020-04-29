@@ -24,6 +24,7 @@ public final class SenderImpl<T extends ICallback> extends SenderAgent<T> {
         this.mRequest = request;
     }
 
+    @Override
     public SenderAgent callback(T callback) {
         this.mCallback = callback;
         this.mManager = SendersManager.getManager();
@@ -31,16 +32,19 @@ public final class SenderImpl<T extends ICallback> extends SenderAgent<T> {
         return this;
     }
 
+    @Override
     public void to(@NonNull WebView target) {
         registerSender(target);
         this.mRequest.to(target);
     }
 
+    @Override
     int getId() {
         return mRequest.getCallbackId();
     }
 
     @Nullable
+    @Override
     T getCallback() {
         return mCallback;
     }

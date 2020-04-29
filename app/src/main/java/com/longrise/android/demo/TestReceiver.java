@@ -39,6 +39,7 @@ public final class TestReceiver {
     private final IReceiver mReceiver = new IReceiver() {
 
         @EventName("onVoiceRecordEnd")
+        @Override
         public void onEvent() {
 
             // 如果需要返回，可以选择使用

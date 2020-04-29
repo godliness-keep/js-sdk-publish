@@ -1,102 +1,35 @@
 package com.longrise.android.jssdk;
 
-import android.webkit.WebView;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
-import com.longrise.android.jssdk.core.JsCallManager;
-import com.longrise.android.jssdk.core.protocol.Result;
 import com.longrise.android.jssdk.core.protocol.base.AbsDataProtocol;
 import com.longrise.android.jssdk.gson.JsonHelper;
-import com.longrise.android.jssdk.sender.base.SendersManager;
-
-import java.lang.reflect.Type;
+import com.longrise.android.jssdk.gson.ParameterizedTypeImpl;
+import com.longrise.android.jssdk.sender.INativeListener;
+import com.longrise.android.jssdk.sender.IScriptListener;
 
 /**
- * Created by godliness on 2020-04-15.
+ * Created by godliness on 2020-04-29.
  *
  * @author godliness
  */
-public final class Response<T> extends AbsDataProtocol {
+public class Response extends AbsDataProtocol {
 
     public static final int RESULT_OK = 1;
 
-    @Expose(deserialize = false)
-    @SerializedName("result")
-    private Result<T> result;
-
-    private T deserialize;
-
-    public static <T> Response<T> create(int callbackId) {
-        return new Response<>(callbackId);
-    }
-
-    public static Response<String> parseResponse(String json) {
-        return parseResponse(json, new TypeToken<Response<String>>() {
-        }.getType());
-    }
-
     /**
-     * 状态，默认 {@link Response#RESULT_OK}
+     * @return {@link INativeListener <T>}
      */
-    public Response<T> state(int state) {
-        createResultIfNeed().setState(state);
-        return this;
+    public static <T> INativeListener<T> create(int id) {
+        return ResponseNative.createInternal(id);
     }
 
-    /**
-     * 说明
-     */
-    public Response<T> desc(String desc) {
-        createResultIfNeed().setDesc(desc);
-        return this;
+    public static IScriptListener<String> parseResponse(String json) {
+        return JsonHelper.fromJson(json, ParameterizedTypeImpl.getTypeImpl(ResponseScript.class, String.class));
     }
 
-    /**
-     * 返回值
-     */
-    public Response<T> result(T result) {
-        createResultIfNeed().setResult(result);
-        return this;
+    public static <T>ResponseScript<T> scriptResponse(){
+        return ResponseScript.createInternal();
     }
 
-    public Result<T> getResult() {
-        return result;
-    }
-
-    public void onJavaScriptCallFinished() {
-        SendersManager.getManager().onJavaScriptCallFinished(getCallbackId(), (String) deserialize);
-    }
-
-    public void notify(WebView webView) {
-        JsCallManager.notifyJavaScriptCallNativeFinished(webView, this);
-    }
-
-    public void deserialize(T deserializer) {
-        this.deserialize = deserializer;
-    }
-
-    public T getDeserialize() {
-        return deserialize;
-    }
-
-    public Response() {
-
-    }
-
-    public Response(int id) {
-        setCallbackId(id);
-    }
-
-    private Result<T> createResultIfNeed() {
-        if (result == null) {
-            result = new Result<>();
-        }
-        return result;
-    }
-
-    private static <T> Response<T> parseResponse(String json, Type type) {
-        return JsonHelper.fromJson(json, type);
+    Response() {
     }
 }

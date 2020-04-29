@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.longrise.android.jssdk.BuildConfig;
+import com.longrise.android.jssdk.ResponseScript;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -28,10 +29,11 @@ public final class SendersManager<T extends ICallback> {
         return Holder.CALLBACKS_MANAGER;
     }
 
-    public void onJavaScriptCallFinished(int id, String result) {
-        final T callback = removeReceiver(id);
+    @SuppressWarnings("unchecked")
+    public void callbackFromScript(ResponseScript script) {
+        final ICallback callback = removeReceiver(script.getCallbackId());
         if (callback != null) {
-            callback.onValue(result);
+            callback.onReceiveValue(script.getResult(callback.getType()));
         }
     }
 

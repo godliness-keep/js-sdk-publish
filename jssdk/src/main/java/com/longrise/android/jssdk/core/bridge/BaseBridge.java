@@ -15,6 +15,7 @@ import com.longrise.android.jssdk.BuildConfig;
 import com.longrise.android.jssdk.Request;
 import com.longrise.android.jssdk.Response;
 import com.longrise.android.jssdk.lifecycle.LifecycleManager;
+import com.longrise.android.jssdk.sender.IScriptListener;
 
 import java.lang.ref.WeakReference;
 
@@ -74,16 +75,16 @@ public abstract class BaseBridge<T extends Activity> extends BridgeLifecyle<T> i
     }
 
     @JavascriptInterface
-    public final void onJavaScriptCallFinished(String resultJson) {
+    public final void onJavaScriptCallFinished(String message) {
         if (!isFinished()) {
-            getMessage(MSG_NOTIFY_NATIVE, Response.parseResponse(resultJson)).sendToTarget();
+            getMessage(MSG_NOTIFY_NATIVE, Response.parseResponse(message)).sendToTarget();
         }
     }
 
     @JavascriptInterface
-    public final void callNativeFromJavaScript(String requestJson) {
+    public final void callNativeFromJavaScript(String message) {
         if (!isFinished()) {
-            getMessage(MSG_CALL_NATIVE,  Request.parseRequest(requestJson)).sendToTarget();
+            getMessage(MSG_CALL_NATIVE,  Request.parseRequest(message)).sendToTarget();
         }
     }
 
@@ -98,10 +99,10 @@ public abstract class BaseBridge<T extends Activity> extends BridgeLifecyle<T> i
     public final boolean handleMessage(Message msg) {
         switch (msg.what) {
             case MSG_NOTIFY_NATIVE:
-                final Response<String> response = parseObjectFromMessage(msg);
-                response.onJavaScriptCallFinished();
+                final IScriptListener<String> response = parseObjectFromMessage(msg);
+                response.onResult();
                 if (mDebug) {
-                    showMessage(response.getDeserialize());
+                    showMessage(response.serialize());
                 }
                 return true;
 

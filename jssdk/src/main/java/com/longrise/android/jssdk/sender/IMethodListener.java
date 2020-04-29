@@ -13,7 +13,13 @@ import com.longrise.android.jssdk.sender.base.SenderAgent;
  */
 public interface IMethodListener<P> {
 
+    /**
+     * 携带参数
+     */
     <Callback extends ICallback> SenderAgent<Callback> params(P params);
 
+    /**
+     * Call to target
+     */
     void to(@NonNull WebView target);
 }

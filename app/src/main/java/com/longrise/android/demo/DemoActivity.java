@@ -99,7 +99,7 @@ public class DemoActivity extends BaseWebActivity {
                 .params(bean)
                 .callback(new ResultCallback<List<UserBean>>() {
                     @Override
-                    protected void onReceiveValue(Result<List<UserBean>> result) {
+                    public void onReceiveValue(Result<List<UserBean>> result) {
                         new AlertDialog.Builder(DemoActivity.this)
                                 .setMessage("来自JavaScript的Return: " + result.toJson())
                                 .setCancelable(true)
@@ -121,7 +121,7 @@ public class DemoActivity extends BaseWebActivity {
                 .params(bean)
                 .callback(new ResultCallback<UserBean>() {
                     @Override
-                    protected void onReceiveValue(Result<UserBean> result) {
+                    public void onReceiveValue(Result<UserBean> result) {
                         new AlertDialog.Builder(DemoActivity.this)
                                 .setMessage("来自JavaScript的Return: " + result.toJson())
                                 .setCancelable(true)

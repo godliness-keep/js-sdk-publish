@@ -22,7 +22,7 @@ public final class JsonHelper {
     static {
         final GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Request.class, StringRequestDeserializer.create());
-        builder.registerTypeAdapter(ResponseDeserializer.getType(), ResponseDeserializer.create());
+        builder.registerTypeAdapter(ResponseNativeDeserializer.getType(), ResponseNativeDeserializer.create());
         builder.registerTypeAdapter(Result.class, ResultDeserializer.create());
         GSON = builder.serializeNulls().disableHtmlEscaping().excludeFieldsWithoutExposeAnnotation().create();
     }
