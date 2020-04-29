@@ -1,1 +1,1 @@
-include ':app', ':test_publish', ':js-sdk'
+include ':app', ':test_publish', ':js-sdk', ':jssdk-wx'

@@ -1,7 +1,7 @@
-package com.longrise.android.js.demo;
+package com.longrise.android.jssdk.demo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
