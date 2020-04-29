@@ -1,1 +1,7 @@
-include ':app', ':test_publish', ':js-sdk', ':jssdk-wx'
+include ':app',
+        ':test_publish',
+        ':jssdk',
+        ':jssdk-wx',
+        ':lib-mvp-base',
+        ':lib-web-base',
+        ':module-photo-wall'

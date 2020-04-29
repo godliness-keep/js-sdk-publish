@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#FF000000">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:src="@drawable/arrow"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="图片"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/iv_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_config"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingRight="16dp"
+            android:text="确认"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <GridView
+        android:id="@+id/gv_wall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="46dp"
+        android:background="#FF666666"
+        android:cacheColorHint="@android:color/transparent"
+        android:horizontalSpacing="3dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="3dp" />
+
+    <TextView
+        android:id="@+id/tv_total"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:background="#70000000"
+        android:gravity="right|center_vertical"
+        android:paddingRight="14dp"
+        android:textColor="@android:color/white"
+        tools:text="0张" />
+
+</merge>

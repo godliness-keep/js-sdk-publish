@@ -1,18 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#CCCCCC"
+        android:gravity="center"
+        android:text="测试 JS-SDK 框架"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/call_no_params_no_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"
+        android:text="调用JS-无参无返回值" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/call_no_params_with_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="调用JS-无参有返回值" />
+
+    <Button
+        android:id="@+id/call_with_params_no_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="调用JS-有参无返回值" />
+
+    <Button
+        android:id="@+id/call_with_params_with_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="调用JS-有参有返回值" />
+
+
+    <com.longrise.android.web.internal.BaseWebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

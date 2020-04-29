@@ -1,0 +1,20 @@
+ext {
+
+    android = [
+            compileSdkVersion: 26,            //编译版本
+            minSdkVersion    : 16,            //最小sdk版本
+            targetSdkVersion : 28,            //测试最高支持版本（超过以兼容模式运行）
+            versionCode      : 0,             //版本号
+            versionName      : '1.0.0'        //1代表第几次提测，release:2.0.0  debug:2.0.0beta1
+    ]
+
+    serviceDebugUrl = [
+            "uploadImageServiceUrl"  : "http://",
+            "downloadImageServiceUrl": "http://"
+    ]
+
+    serviceReleaseUrl = [
+            "uploadImageServiceUrl"  : "http://",
+            "downloadImageServiceUrl": "http://"
+    ]
+}

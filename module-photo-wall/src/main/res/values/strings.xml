@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">照片选择器</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="all_images">所有图片</string>
+    <string name="sdcard_no_use">当前存储卡不可用</string>
+    <string name="is_loading">正在加载...</string>
+    <string name="no_getimages">未获取到任何照片</string>
+    <string name="no_selecte_images">您未选择任何照片</string>
+    <string name="max_select_images">最多选择9张图片</string>
+    <string name="za">张</string>
+
+</resources>
