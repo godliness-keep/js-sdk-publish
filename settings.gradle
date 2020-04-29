@@ -1,5 +1,4 @@
 include ':app',
-        ':test_publish',
         ':jssdk',
         ':jssdk-wx',
         ':lib-mvp-base',
