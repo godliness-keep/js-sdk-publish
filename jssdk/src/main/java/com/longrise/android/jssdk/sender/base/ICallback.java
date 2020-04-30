@@ -1,17 +1,13 @@
 package com.longrise.android.jssdk.sender.base;
 
-import com.longrise.android.jssdk.core.protocol.Result;
-
-import java.lang.reflect.Type;
+import com.longrise.android.jssdk.ResponseScript;
 
 /**
  * Created by godliness on 2020-04-29.
  *
  * @author godliness
  */
-public interface ICallback<T> {
+public interface ICallback {
 
-    void onReceiveValue(Result<T> result);
-
-    Type getType();
+    void onResponse(ResponseScript script);
 }

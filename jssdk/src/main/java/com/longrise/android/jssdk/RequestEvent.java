@@ -14,22 +14,22 @@ import com.longrise.android.jssdk.sender.base.SenderImpl;
  *
  * @author godliness
  */
-final class RequestEvent<P> extends Request<P> implements IEventListener<P> {
+final class RequestEvent<P, T extends ICallback> extends Request<P> implements IEventListener<P, T> {
 
     @SuppressWarnings("unchecked")
-    static <P> IEventListener<P> create(String eventName) {
+    static <P, T extends ICallback> IEventListener<P,T> create(String eventName) {
         return new RequestEvent<>().eventName(eventName);
     }
 
     @Override
-    public IEventListener<P> params(P params) {
+    public IEventListener<P, T> params(P params) {
         setParams(params);
         return this;
     }
 
     @Override
-    public <Callback extends ICallback> SenderAgent callback(Callback callback) {
-        return new SenderImpl<>(this).callback(callback);
+    public SenderAgent<T> callback(T callback) {
+        return new SenderImpl<T>(this).callback(callback);
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.longrise.android.jssdk.gson.JsonHelper;
 import com.longrise.android.jssdk.gson.ParameterizedTypeImpl;
 import com.longrise.android.jssdk.sender.IEventListener;
 import com.longrise.android.jssdk.sender.IMethodListener;
+import com.longrise.android.jssdk.sender.base.ICallback;
 
 /**
  * Created by godliness on 2020-04-13.
@@ -28,7 +29,7 @@ public class Request<T> extends AbsDataProtocol {
      *
      * @param javaScriptMethodName method name in the JavaScript
      */
-    public static <P> IMethodListener<P> call(String javaScriptMethodName) {
+    public static <P, T extends ICallback> IMethodListener<P, T> call(String javaScriptMethodName) {
         return RequestMethod.create(javaScriptMethodName);
     }
 
@@ -37,7 +38,7 @@ public class Request<T> extends AbsDataProtocol {
      *
      * @param eventName event name in the JavaScript
      */
-    public static <P> IEventListener<P> callEvent(String eventName) {
+    public static <P, T extends ICallback> IEventListener<P, T> callEvent(String eventName) {
         return RequestEvent.create(eventName);
     }
 

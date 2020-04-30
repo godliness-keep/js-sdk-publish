@@ -29,11 +29,10 @@ public final class SendersManager<T extends ICallback> {
         return Holder.CALLBACKS_MANAGER;
     }
 
-    @SuppressWarnings("unchecked")
     public void callbackFromScript(ResponseScript script) {
         final ICallback callback = removeReceiver(script.getCallbackId());
         if (callback != null) {
-            callback.onReceiveValue(script.getResult(callback.getType()));
+            callback.onResponse(script);
         }
     }
 

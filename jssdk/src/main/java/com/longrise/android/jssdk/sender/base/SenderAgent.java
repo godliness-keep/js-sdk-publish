@@ -10,7 +10,7 @@ import android.webkit.WebView;
  */
 public abstract class SenderAgent<T extends ICallback> {
 
-    public abstract SenderAgent callback(T callback);
+    public abstract SenderAgent<T> callback(T callback);
 
     public abstract void to(@NonNull WebView target);
 

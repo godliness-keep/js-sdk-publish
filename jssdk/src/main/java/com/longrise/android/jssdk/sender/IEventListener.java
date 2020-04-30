@@ -11,17 +11,17 @@ import com.longrise.android.jssdk.sender.base.SenderAgent;
  *
  * @author godliness
  */
-public interface IEventListener<P> {
+public interface IEventListener<P, T extends ICallback> {
 
     /**
      * 携带参数
      */
-    IEventListener<P> params(P params);
+    IEventListener<P, T> params(P params);
 
     /**
      * 返回值
      */
-    <Callback extends ICallback> SenderAgent callback(Callback callback);
+    SenderAgent<T> callback(T callback);
 
     /**
      * Call to target

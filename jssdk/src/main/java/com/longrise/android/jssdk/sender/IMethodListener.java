@@ -11,12 +11,12 @@ import com.longrise.android.jssdk.sender.base.SenderAgent;
  *
  * @author godliness
  */
-public interface IMethodListener<P> {
+public interface IMethodListener<P, T extends ICallback> {
 
     /**
      * 携带参数
      */
-    <Callback extends ICallback> SenderAgent<Callback> params(P params);
+    SenderAgent<T> params(P params);
 
     /**
      * Call to target

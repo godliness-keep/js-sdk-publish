@@ -14,15 +14,15 @@ import com.longrise.android.jssdk.sender.base.SenderImpl;
  *
  * @author godliness
  */
-final class RequestMethod<P> extends Request<P> implements IMethodListener<P> {
+final class RequestMethod<P, T extends ICallback> extends Request<P> implements IMethodListener<P, T> {
 
     @SuppressWarnings("unchecked")
-    static <P>IMethodListener<P> create(String javaScriptMethodName) {
-        return new RequestMethod<>().methodName(javaScriptMethodName);
+    static <P, T extends ICallback> IMethodListener<P, T> create(String javaScriptMethodName) {
+        return (IMethodListener<P, T>) new RequestMethod<>().methodName(javaScriptMethodName);
     }
 
     @Override
-    public <Callback extends ICallback> SenderAgent<Callback> params(P params) {
+    public SenderAgent<T> params(P params) {
         setParams(params);
         return new SenderImpl<>(this);
     }
@@ -37,7 +37,7 @@ final class RequestMethod<P> extends Request<P> implements IMethodListener<P> {
         return this;
     }
 
-    private RequestMethod(){
+    private RequestMethod() {
 
     }
 }

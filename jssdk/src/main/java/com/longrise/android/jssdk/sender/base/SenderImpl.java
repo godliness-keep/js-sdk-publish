@@ -25,7 +25,7 @@ public final class SenderImpl<T extends ICallback> extends SenderAgent<T> {
     }
 
     @Override
-    public SenderAgent callback(T callback) {
+    public SenderAgent<T> callback(T callback) {
         this.mCallback = callback;
         this.mManager = SendersManager.getManager();
         this.mRequest.setCallbackId(mManager.aliveId());
